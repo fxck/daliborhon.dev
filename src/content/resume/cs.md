@@ -68,7 +68,7 @@ Zkušenosti s těmito softwary a platformami mám jak v rámci implementace, tak
 Samozřejmostí je také integrace na další navazující systémy. Ve své kariéře jsem se také setkal s celou řadou ERP systémů jako např. Dynamics 365 Business Central, Helios Green, Karat! apod.
 
 ## Certifikace
-Aktuální vertifikace naleznete na mém [LinkedIn](https://linked-in.com/dallyh) profilu.
+Aktuální vertifikace naleznete na mém [LinkedIn](https://linked-in.com/dallibor.hon) profilu.
 
 - Power Platform Fundamentals (PL-900)
 - Microsoft Dynamics 365 Fundamentals (PL-900)
