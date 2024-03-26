@@ -12,7 +12,7 @@ const { url, urlDescription } = Astro.props;
 
 // i18next
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 ---
 
 <div class="arrow-link">

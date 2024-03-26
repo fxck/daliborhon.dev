@@ -14,7 +14,7 @@ interface Props {
 
 const { postSize = siteConfig.blog.featuredPostsSize, isFirstSection = false, showSeeAllUrl = true } = Astro.props;
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 
 //Blogs
 const posts = await getFeaturedBlogArticlesByLocale({ locale, first: postSize });

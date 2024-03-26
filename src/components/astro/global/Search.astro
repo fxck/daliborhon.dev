@@ -7,7 +7,7 @@ import { languageTag } from "$paraglide-runtime";
 import "@pagefind/default-ui/css/ui.css";
 import { Icon } from "astro-icon/components";
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 
 // Temporary, until https://github.com/CloudCannon/pagefind/pull/543 gets merged
 let translations = {};

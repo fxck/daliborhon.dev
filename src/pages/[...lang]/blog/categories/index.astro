@@ -11,7 +11,7 @@ export { getStaticPaths };
 import { getAllCategoriesByLocale } from "@services/content/getAllCategoriesByLocale";
 import { languageTag } from "$paraglide-runtime";
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 
 const layoutProps = {
     title: `${m.blog__categories()} - Blog`,

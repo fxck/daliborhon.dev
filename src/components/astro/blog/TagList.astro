@@ -14,7 +14,7 @@ interface Props {
 
 const { post, bgColor, justify, tags, useTagColor = false, padding = "0.5rem" } = Astro.props;
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 ---
 
 <ul class="tag-list">

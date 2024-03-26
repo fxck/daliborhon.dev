@@ -9,7 +9,7 @@ interface Props {
     project: IGenProjectMetaFragment;
 }
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 const { project } = Astro.props;
 const { projectSourceUrl, title, image, projectStartDate, projectTags, description } = project;
 

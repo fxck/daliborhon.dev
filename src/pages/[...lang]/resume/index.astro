@@ -9,7 +9,7 @@ import profilePicture from "@assets/img/profile/me.png";
 
 export { getStaticPaths } from "@i18n/utils";
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 
 const resumeEntry = await getEntry("resume", locale);
 const { Content } = await resumeEntry.render();

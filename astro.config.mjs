@@ -1,5 +1,4 @@
 import cloudflare from "@astrojs/cloudflare";
-import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
@@ -8,7 +7,7 @@ import icon from "astro-icon";
 import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
-import { defaultLocale, localeKeys, locales } from "./src/i18n/config";
+import { defaultLocale, localeKeys, locales, astroI18nConfigPaths } from "./src/i18n/config";
 
 const { SITE_URL, SITE_BASE } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 const PORT = 4321;
@@ -46,7 +45,7 @@ export default defineConfig({
     },
     i18n: {
         defaultLocale: defaultLocale,
-        locales: locales,
+        locales: [...astroI18nConfigPaths],
         routing: {
             prefixDefaultLocale: false,
         },
@@ -78,8 +77,7 @@ export default defineConfig({
         paraglide({
             project: "./project.inlang",
             outdir: "./src/paraglide",
-        }),
-        mdx(),
+        })
     ],
     vite: {
         server: {

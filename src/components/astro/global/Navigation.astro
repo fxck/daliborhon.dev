@@ -16,7 +16,7 @@ interface Props {
 
 const { post } = Astro.props;
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 ---
 
 <site-nav>

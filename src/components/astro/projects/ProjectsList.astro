@@ -14,7 +14,7 @@ interface Props {
 
 const { recentSize = siteConfig.projects.recentProjectsSize, listAll = false } = Astro.props;
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 
 const projects = await getRecentProjectsByLocale({ locale, first: recentSize });
 

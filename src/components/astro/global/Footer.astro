@@ -3,7 +3,7 @@ import * as m from "$messages";
 import { Icon } from "astro-icon/components";
 import { languageTag } from "$paraglide-runtime";
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 ---
 
 <footer class="footer-container">

@@ -21,7 +21,7 @@ interface Props {
 
 const { post } = Astro.props;
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 
 const layoutProps = {
     title: `${m.blog__post()}: ${post?.title}`,

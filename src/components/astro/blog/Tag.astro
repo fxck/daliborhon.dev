@@ -13,7 +13,7 @@ interface Props {
 
 const { tag } = Astro.props;
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 
 const posts = await getAllBlogArticlesByTagAndLocale({ locale, tagId: tag?.id! });
 

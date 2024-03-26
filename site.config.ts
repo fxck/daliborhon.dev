@@ -12,12 +12,12 @@ export const siteConfig = {
     i18n: {
         locales: {
             cs: {
-                label: "Čeština",
-                locale: "cs",
+                path: "cs",
+                codes: ["cs", "cs-CZ", "sk", "sk-SK"],
             },
             en: {
-                label: "English",
-                locale: "en",
+                path: "en",
+                codes: ["en", "en-GB", "en-US"],
             },
         },
         defaultLocale: "cs",

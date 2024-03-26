@@ -9,7 +9,7 @@ import { languageTag } from "$paraglide-runtime";
 
 export { getStaticPaths } from "@i18n/utils";
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 
 const layoutProps = {
     title: m.blog__featured_posts_title(),

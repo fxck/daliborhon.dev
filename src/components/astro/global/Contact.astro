@@ -3,7 +3,7 @@ import ContactForm from "@components/react/ContactForm/ContactForm";
 import { languageTag } from "$paraglide-runtime";
 import Loader from "./Loader.astro";
 
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 ---
 
 <ContactForm locale={locale} client:load>

@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { category } = Astro.props;
-const locale = languageTag();
+const locale = Astro.currentLocale!;
 
 const title = category?.name;
 const description = category?.description;
