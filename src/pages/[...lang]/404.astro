@@ -8,8 +8,6 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 
 const locale = Astro.currentLocale!;
 
-console.log("Locale from 404 page: " + locale);
-
 const layoutProps = {
     title: m.error__not_found(),
     description: m.error__not_found_description(),
