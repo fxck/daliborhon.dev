@@ -82,6 +82,31 @@ const capitalizeFirstLetter = (str: string) => {
     </label>
 </lang-select>
 
+<script>
+    import { siteConfig } from "@config";
+    import { navigate } from "astro:transitions/client";
+    import cookie from "js-cookie";
+
+    const configCookie = siteConfig.i18n.localeCookie;
+
+    class LanguageSelect extends HTMLElement {
+        constructor() {
+            super();
+            const select = this.querySelector("select");
+            if (select) {
+                select.addEventListener("change", (e) => {
+                    if (e.currentTarget instanceof HTMLSelectElement) {
+                        const lang = e.currentTarget.options[e.currentTarget.selectedIndex].dataset.language!;
+                        cookie.set(configCookie.name, lang, { expires: configCookie.expDays });
+                        navigate(e.currentTarget.value);
+                    }
+                });
+            }
+        }
+    }
+    customElements.define("lang-select", LanguageSelect);
+</script>
+
 <style>
     lang-select {
         display: contents;
@@ -169,24 +194,3 @@ const capitalizeFirstLetter = (str: string) => {
         }
     }
 </style>
-
-<script>
-    import { navigate } from "astro:transitions/client";
-    class LanguageSelect extends HTMLElement {
-        constructor() {
-            super();
-            const select = this.querySelector("select");
-            if (select) {
-                select.addEventListener("change", (e) => {
-                    if (e.currentTarget instanceof HTMLSelectElement) {
-                        const lang = e.currentTarget.options[e.currentTarget.selectedIndex].dataset.language!;
-                        window.localStorage.setItem("language", lang); // This should be a cookie
-
-                        navigate(e.currentTarget.value);
-                    }
-                });
-            }
-        }
-    }
-    customElements.define("lang-select", LanguageSelect);
-</script>

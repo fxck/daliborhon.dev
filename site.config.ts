@@ -21,5 +21,9 @@ export const siteConfig = {
             },
         },
         defaultLocale: "cs",
+        localeCookie: {
+            name: "redirected-locale",
+            expDays: 60
+        }
     },
 };
