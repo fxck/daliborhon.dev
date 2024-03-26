@@ -9,7 +9,6 @@ interface Props {
     project: IGenProjectMetaFragment;
 }
 
-
 const locale = languageTag();
 const { project } = Astro.props;
 const { projectSourceUrl, title, image, projectStartDate, projectTags, description } = project;
@@ -72,35 +71,33 @@ const img = await fetchImage(image!.src!);
             {img?.svg && <Fragment set:html={img?.data} />}
             {!img?.svg && <img src={img?.data} alt={title} />}
         </i>
-        <div class="card-info-wrapper">
-            <div class="card-info">
-                <div class="card-info-title">
-                    <div class="title-meta">
-                        <a href={projectSourceUrl} target="_blank" title={title} aria-label={title}>{title}</a>
-                        {
-                            (
-                                <div class="project-date">
-                                    <span>{m.projects__start_date_title()}:</span>
-                                    <time datetime={formatDateTime().iso}>{formatDateTime().date}</time>
+        <div class="card-info-wrapper" data-pagefind-body>
+            <div class="card-info-title">
+                <div class="title-meta">
+                    <a href={projectSourceUrl} target="_blank" title={title} aria-label={title}>{title}</a>
+                    {
+                        (
+                            <div class="project-date">
+                                <span>{m.projects__start_date_title()}:</span>
+                                <time datetime={formatDateTime().iso}>{formatDateTime().date}</time>
+                            </div>
+                        )
+                    }
+                </div>
+                <div class="card-info-tags">
+                    {
+                        projectTags!.map((tag) => {
+                            return (
+                                <div class="rounded-tag" style={`background: ${isTagCssColorEmpty(tag?.cssColor!) ? tag?.color : tag?.cssColor};`}>
+                                    {tag?.title}
                                 </div>
-                            )
-                        }
-                    </div>
-                    <div class="card-info-tags">
-                        {
-                            projectTags!.map((tag) => {
-                                return (
-                                    <div class="rounded-tag" style={`background: ${isTagCssColorEmpty(tag?.cssColor!) ? tag?.color : tag?.cssColor};`}>
-                                        {tag?.title}
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
+                            );
+                        })
+                    }
                 </div>
-                <div class="card-body">
-                    <CaisyRichTextRenderer richTextJson={description?.json} />
-                </div>
+            </div>
+            <div class="card-body">
+                <CaisyRichTextRenderer richTextJson={description?.json} />
             </div>
         </div>
     </div>
@@ -156,21 +153,6 @@ const img = await fetchImage(image!.src!);
         }
     }
 
-    .card-info-wrapper {
-        display: flex;
-        flex-grow: 1;
-        justify-content: flex-start;
-        padding: 0px 1rem;
-        width: 100%;
-        height: 100%;
-    }
-
-    .card-info {
-        align-items: flex-start;
-        display: flex;
-        gap: 10px;
-    }
-
     .card-info-tags {
         display: flex;
         flex-wrap: wrap;
@@ -189,9 +171,11 @@ const img = await fetchImage(image!.src!);
         }
     }
 
-    .card-info {
+    .card-info-wrapper {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
 
         .card-body {
             color: var(--body-color);

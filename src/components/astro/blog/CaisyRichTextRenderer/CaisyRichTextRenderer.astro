@@ -22,7 +22,7 @@ const overwrites = {
     heading: Heading,
 };
 
-const headings = richTextJson.content.filter((node: HeadingNode) => {
+const headings: HeadingNode[] = richTextJson.content.filter((node: HeadingNode) => {
     return node.type === "heading";
 });
 
@@ -52,7 +52,7 @@ function generateTableOfContents(headings: HeadingNode[], maxDepth: number | und
 ---
 
 {
-    generateToc && (
+    generateToc && headings.length !== 0 && (
         <details>
             <h2 class="mt-0" id="toc">
                 {m.blog__toc()}

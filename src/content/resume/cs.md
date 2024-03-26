@@ -4,6 +4,13 @@ description: Webová verze mého životopisu.
 currentPosition: Business Consultant
 ---
 
+# Životopis
+Dalibor Hon - Business Consultant, Ostrava
+
+Kontakt: [LinkedIn](https://www.linkedin.com/in/dalibor-hon/) | [Email (online formulář)](https://www.daliborhon.dev/contact) 
+
+Web: [www.daliborhon.dev](https://www.daliborhon.dev)
+
 ## Úvod
 
 ### +55 Dokončených Projektů
@@ -28,32 +35,34 @@ Mezi většinu těchto projektů patří hlavně implementace software pro vytě
 Jako business konzultant jsem si stačil osahat hodně věcí, od Windows serverů, přes konfigurace IIS a také programování/skriptování. 
 Níže jsou uvedeny pouze ty největší oblasti, s kterými se setkávám dennodenně.
 
-- Business Analýza (\+ 2 let)
+- Business Analýza (\+ 3 let)
   - Mapování procesů, UML, vývojářské zadání...
 
-- Windows Servery (\+ 2 let)
+- Windows Servery (\+ 3 let)
   - Konfigurace serverů, instalace potřebného software (on-premise, IIS, Azure, a další) ...
 
-- Relační Databáze (\+ 4 let)
+- Relační Databáze (\+ 6 let)
   - SQL, PLSQL, T-SQL, reporting, databázové procedury...
 
-- Objektově Orientované Programování (\+ 1 let)
+- Objektově Orientované Programování (\+ 2 let)
   - Integrace, C#, interní aplikace na míru...
 
 ### Programovací jazyky a nástroje
 - HTML5
 - CSS3
-- JavaScript
-- Node JS
-- NPM
+- JavaScript, TypeScript
+  - React
+  - Node JS
+  - NPM
 - C#
-- .NET Framework
-- .NET Core
-- MSSQL
+  - .NET Framework
+  - .NET Core
+- SQL
+  - MS SQL (T-SQL)
+  - Oracle SQL (PL/SQL)
 - Git
-- Azure
-- TypeScript
-- React
+- Microsoft Azure
+- Microsoft DevOps
 
 #### Zkušenosti se softwarem a platformami (implementace, customizace)
 -   [ABBYY FlexiCapture](https://www.abbyy.com/flexicapture/)
@@ -62,36 +71,67 @@ Níže jsou uvedeny pouze ty největší oblasti, s kterými se setkávám denno
 -   [Microsoft SharePoint](https://www.microsoft.com/cs-cz/microsoft-365/sharepoint/collaboration)
 -   [Microsoft PowerPlaftorm](https://powerplatform.microsoft.com/en-us/)
 -   [M-Files](https://www.m-files.com/)
--   [K2 Five/K2 Cloud](https://www.nintex.com/process-automation/k2-software/)
+-   [K2 Five](https://www.nintex.com/process-automation/k2-software/)
 
 Zkušenosti s těmito softwary a platformami mám jak v rámci implementace, tak také v customizaci řešení na míru šitém zákazníkovi.
 Samozřejmostí je také integrace na další navazující systémy. Ve své kariéře jsem se také setkal s celou řadou ERP systémů jako např. Dynamics 365 Business Central, Helios Green, Karat! apod.
 
 ## Certifikace
-Aktuální vertifikace naleznete na mém [LinkedIn](https://linked-in.com/dallibor.hon) profilu.
+Aktuální vertifikace naleznete na mém [LinkedIn](https://www.linkedin.com/in/dalibor-hon/details/certifications/) profilu.
 
-- Power Platform Fundamentals (PL-900)
-- Microsoft Dynamics 365 Fundamentals (PL-900)
-- FlexiCapture 12 Basic
-- Vantage Certified Business Analyst
-- K2 IT Developer
-- K2 Citizen Developer
-- K2 Business Analyst
-- M-Files Solution Engineer
+- Microsoft
+  - Power Platform Fundamentals (PL-900)
+  - Dynamics 365 Fundamentals (PL-900)
+- ABBYY
+  - FlexiCapture 12 Basic
+  - Vantage Certified Business Analyst
+- Nintex
+  - K2 IT Developer
+  - K2 Citizen Developer
+  - K2 Business Analyst
+- M-Files 
+  - Solution Engineer
 
 
 ## Pracovní zkušenosti a vzdělání
 
 ### Zkušenosti
-- Duben 2020 – Současnost
-  - ECM Business Consultant @ Konica Minolta IT Solutions Czech s.r.o
-- Září 2018 – Březen 2020
-  - Analyst, Shared Services @ MONETA Money Bank a.s.
-- Červenec 2017 – Srpen 2018
-  - Administrator End User Services, IT @ MONETA Money Bank a.s.
-- Říjen 2014 – Duben 2017
-  - Motherboard Technician @ ASUS Czech Service s.r.o.
+
+**ECM Business Consultant (Duben 2020 – Současnost)**
+
+*Konica Minolta IT Solutions Czech s.r.o*
+
+Konzultace ve směru digitalizace kanceláří a zbavení se papírových procesů ve firmách. Digitalizace zahrnuje automatické vytěžování údajů z dokumentů, integrace na interní systémy zákazníka a popřípadě také zavádění nových systémů, z pravidla systémů pro správu dokumentů (DMS). Využití agilních metodik, ale také waterfallu. Úzká spolupráce se zákazníkem a interními týmy jako např. vývojové oddělení, při vytváření vývojového zadání a také business analýz. Součástí je také školení zákazníku pro práce s novými implementovanými systémy.
+
+---
+
+**Analyst, Shared Services (Září 2018 – Březen 2020)**
+
+*MONETA Money Bank a.s.*
+
+Vytváření reportů za použití nástrojů jako Microsoft Excel, SQL (Oracle), Microsoft Access, PowerBI a SAS BI. Součástí byla také tvorba procesních analýz pro komerční (SMB) backoffice, se zaměřením na komerční proces RWA (risk-weighted asset).
+
+---
+
+**Administrator End User Services, IT (Červenec 2017 – Srpen 2018)**
+
+*MONETA Money Bank a.s.*
+
+Podpora interních koncových uživatelů po telefonu, emailem a dalšími kanály. Práce s ticketovacím systémem, eskalování důležitých záležitostí a také troška programování. Zde jsem se začal postupně učit hlavně VBScript u maker v Microsoft Excelu.
+
+---
+
+**Motherboard Technician (Říjen 2014 – Duben 2017)**
+
+*ASUS Czech Service s.r.o.*
+
+Opravování základních desek všeho druhu na úrovni malých součástek. Pájení, měření (osciloskopem), a samozřejmě čtení v elektronických schématech.
   
 ### Vzdělání
-- 2010 - 2014 Maturita
-  - Střední škola Elektrotechnická Ostrava, Na Jízdárně 
+
+**Mechanik elektrotechnik - počítačové a zabezpečovací systémy (2010 - 2014)**
+
+*Střední škola Elektrotechnická Ostrava, Na Jízdárně*
+
+Zakončeno maturitou.
+

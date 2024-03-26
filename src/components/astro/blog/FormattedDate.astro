@@ -11,8 +11,11 @@ const { pubDateTime, modDatetime, locale } = Astro.props;
 
 const wasUpdated = () => {
     if (modDatetime && pubDateTime) {
-        return !(new Date(pubDateTime).getTime() === new Date(modDatetime).getTime());
+        const updated = !(new Date(pubDateTime).getTime() === new Date(modDatetime).getTime());
+        return updated;
     }
+
+    return false;
 };
 
 const formattedDatetime = () => {
@@ -37,7 +40,7 @@ const formattedDatetime = () => {
 };
 ---
 
-<span>{wasUpdated() ? m.blog__published_date_title() : m.blog__updated_date_title()}</span>
+<span>{wasUpdated() ? m.blog__updated_date_title() : m.blog__published_date_title()}</span>
 <time datetime={formattedDatetime().iso}>{formattedDatetime().date}</time>
 <span> | </span>
 <span>{formattedDatetime().time}</span>

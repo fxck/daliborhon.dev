@@ -13,8 +13,9 @@ import { defaultLocale, localeKeys, locales } from "./src/i18n/config";
 const { SITE_URL, SITE_BASE } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 const PORT = 4321;
 const URL = import.meta.env.DEV ? `http://localhost:${PORT}` : SITE_URL ?? "https://www.daliborhon.dev/";
-console.log(`Using SITE_URL: '${URL}'`);
-console.log(`Using SITE_BASE: '${SITE_BASE === undefined ? "/" : SITE_BASE}'`);
+
+console.log(`> Using SITE_URL: '${URL}'`);
+console.log(`> Using SITE_BASE: '${SITE_BASE === undefined ? "/" : SITE_BASE}'`);
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,6 +25,14 @@ export default defineConfig({
     build: {
         format: "file",
     },
+    output: "hybrid",
+    adapter: cloudflare({
+        imageService: "compile",
+        runtime: {
+            type: "pages",
+            mode: "local",
+        },
+    }),
     image: {
         domains: ["assets.caisy.io"],
         remotePatterns: [
@@ -51,7 +60,9 @@ export default defineConfig({
                     ...localeKeys,
                 },
             },
-            filter: (page) => page !== `'${URL}admin'`,
+            filter: (page) => {
+                return !page.includes("404");
+            },
         }),
         pagefind(),
         icon({
@@ -78,12 +89,4 @@ export default defineConfig({
             exclude: ["@resvg/resvg-js"],
         },
     },
-    output: "hybrid",
-    adapter: cloudflare({
-        imageService: "compile",
-        runtime: {
-            type: "pages",
-            mode: "local",
-        },
-    }),
 });

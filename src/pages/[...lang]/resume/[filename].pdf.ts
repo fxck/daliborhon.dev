@@ -20,10 +20,14 @@ export const GET: APIRoute = async ({ params }) => {
     const lang = params.lang;
     const filename = params.filename + "-dalibor-hon.pdf";
 
-    const headers = {
+    let headers = {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="${filename}"`,
     };
+
+    if (import.meta.env.DEV) {
+        headers["Content-Disposition"] = "";
+    }
 
     // Expect default language
     if (lang === undefined) {

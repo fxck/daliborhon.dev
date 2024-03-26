@@ -61,6 +61,8 @@ async function SerializeCloudflareResponse(cloudflareResponse: Response, res: Bu
     }
 }
 /**
+ * Endpoint to trigger a build with webhook from Caisy.
+ * 
  * Accepted headers:
  * 
  * x-webhook-disable-build: Disables the build completely on this endpoint. Workaround for Caisy.
@@ -69,7 +71,6 @@ async function SerializeCloudflareResponse(cloudflareResponse: Response, res: Bu
  * 
  * x-webhook-build-env: What environment to build. Possible values are 'prod', 'preview', 'all'. 
  * Webhook URL's must be set in env. variables CLOUDFLARE_PREVIEW_BUILD_HOOK_URL, CLOUDFLARE_PROD_BUILD_HOOK_URL or both.
- * 
  * 
  */
 export const POST: APIRoute = async ({ request }) => {
