@@ -11,7 +11,6 @@ import { getAllBlogArticlesByTagAndLocale } from "@services/content/getAllBlogAr
 import { getAllTags } from "@services/content/getAllTags";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
-// This is kinda complicated
 export async function getStaticPaths() {
     const paths = await Promise.all(
         locales.flatMap(async (locale) => {

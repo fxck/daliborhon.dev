@@ -4,7 +4,6 @@ import { getRoutingLocale } from "@i18n/utils";
 import BlogPostLayout from "@layouts/BlogPostLayout.astro";
 import { getAllBlogArticlesByLocale } from "@services/content/getAllBlogArticlesByLocale";
 import { getBlogPostSlug } from "@utils";
-import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
     const paths = await Promise.all(

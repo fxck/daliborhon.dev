@@ -1,6 +1,5 @@
 ---
 import * as m from "$messages";
-
 import { Icon } from "astro-icon/components";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import LanguageSelector from "./LanguageSelector.astro";
@@ -8,7 +7,6 @@ import Search from "./Search.astro";
 import ThemeSelect from "./ThemeSelect.astro";
 import type { IGenBlogArticleMetaFragment } from "@services/graphql/__generated/sdk";
 import NavLoader from "./NavLoader.astro";
-import { languageTag } from "$paraglide-runtime";
 
 interface Props {
     post?: IGenBlogArticleMetaFragment;

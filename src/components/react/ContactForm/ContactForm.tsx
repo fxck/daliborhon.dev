@@ -11,6 +11,7 @@ export interface Props {
     locale: AvailableLanguageTag;
 }
 
+// This can all be public.
 const ACCESS_KEY = "7d81d4b3-a54e-4341-9544-2553a5aa4daf";
 const HCAPTCHA_KEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
 const API_URL = "https://api.web3forms.com/submit";

@@ -6,7 +6,6 @@ export interface Props {
 }
 
 const { standalone } = Astro.props;
-
 ---
 
 {standalone && <div class="dot-flashing" aria-label={m.common__loading()} title={m.common__loading()} />}
@@ -20,6 +19,15 @@ const { standalone } = Astro.props;
 }
 
 <style>
+    @keyframes dot-flashing {
+        0% {
+            background-color: #9880ff;
+        }
+        50%,
+        100% {
+            background-color: rgba(152, 128, 255, 0.2);
+        }
+    }
     #pageLoad {
         position: fixed;
         top: 0;

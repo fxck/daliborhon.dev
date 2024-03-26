@@ -1,10 +1,10 @@
 ---
 import * as m from "$messages";
 import { Icon } from "astro-icon/components";
-export { getStaticPaths } from "@i18n/utils";
-import { languageTag } from "$paraglide-runtime";
 import MainLayout from "@layouts/MainLayout.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
+
+export { getStaticPaths } from "@i18n/utils";
 
 const locale = Astro.currentLocale!;
 

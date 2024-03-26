@@ -6,12 +6,13 @@ import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import profilePicture from "@assets/img/profile/me.png";
+import type { CollectionEntry } from "astro:content";
 
 export { getStaticPaths } from "@i18n/utils";
 
 const locale = Astro.currentLocale!;
 
-const resumeEntry = await getEntry("resume", locale);
+const resumeEntry = await getEntry("resume", locale) as CollectionEntry<"resume">;
 const { Content } = await resumeEntry.render();
 
 const layoutProps = {

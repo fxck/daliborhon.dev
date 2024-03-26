@@ -7,7 +7,7 @@ currentPosition: Business Consultant
 # Resume
 Dalibor Hon - Business Consultant, Ostrava
 
-Contact: [LinkedIn](https://www.linkedin.com/in/dalibor-hon/) | [Email (online form)](https://www.daliborhon.dev/contact) 
+Contact: [LinkedIn](https://www.linkedin.com/in/dalibor-hon/) | [Email (online form)](https://www.daliborhon.dev/en/contact) 
 
 Web: [www.daliborhon.dev](https://www.daliborhon.dev)
 

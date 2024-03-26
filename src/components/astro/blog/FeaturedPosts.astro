@@ -4,7 +4,6 @@ import * as m from "$messages";
 import Section from "../global/Section.astro";
 import PostsGrid from "./PostsGrid.astro";
 import { getFeaturedBlogArticlesByLocale } from "@services/content/getFeaturedBlogArticlesByLocale";
-import { languageTag } from "$paraglide-runtime";
 
 interface Props {
     postSize?: number;
@@ -16,7 +15,6 @@ const { postSize = siteConfig.blog.featuredPostsSize, isFirstSection = false, sh
 
 const locale = Astro.currentLocale!;
 
-//Blogs
 const posts = await getFeaturedBlogArticlesByLocale({ locale, first: postSize });
 
 const sectionProps = {
