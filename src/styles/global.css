@@ -123,6 +123,20 @@ button {
         color: var(--button-hover-color);
         cursor: pointer;
     }
+
+    
+    &.is-anchor {
+        color: var(--button-color);
+
+        &:visited {
+            color: var(--button-color);
+        }
+
+        &:hover {
+            text-decoration: none;
+            color: var(--button-hover-color);
+        }
+    }
 }
 
 a {
@@ -221,4 +235,3 @@ a {
         border-left: 0.3em solid transparent;
     }
 }
-
