@@ -22,7 +22,7 @@ const url = getRelativeLocaleUrl(locale, `/blog/tags/${tag?.name!}/`);
 
 {
     posts && posts.length !== 0 && (
-        <li class="tag" data-pagefind-body>
+        <li class="tag">
             <h2 class="title">
                 <a href={url} aria-label={{ title } + m.blog__tag()}>
                     <i>

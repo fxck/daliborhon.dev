@@ -152,5 +152,6 @@
     "resume__years": "years",
     "projects__start_date_title": "Project started",
     "error__not_found": "Error 404 (Not Found)",
-    "error__not_found_description": "The specified URL was not found"
+    "error__not_found_description": "The specified URL was not found",
+    "common__date": "Date"
 }

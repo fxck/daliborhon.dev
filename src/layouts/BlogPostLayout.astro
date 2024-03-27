@@ -5,7 +5,7 @@ import TagList from "@components/astro/blog/TagList.astro";
 import BreadCrumbs from "@components/astro/blog/BreadCrumbs.astro";
 import BreadCrumbsItem from "@components/astro/blog/BreadCrumbsItem.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { getOgImageUrl } from "@utils";
+import { getAbsoluteCategoryUrl, getBlogPostDateTime, getOgImageUrl } from "@utils";
 import Footer from "@components/astro/global/Footer.astro";
 import HeadHrefLangs from "@components/astro/global/HeadHrefLangs.astro";
 import Navigation from "@components/astro/global/Navigation.astro";
@@ -13,6 +13,7 @@ import * as m from "$messages";
 import type { IGenBlogArticleMetaFragment } from "@services/graphql/__generated/sdk";
 import { Image } from "@unpic/astro";
 import CaisyRichTextRenderer from "@components/astro/blog/CaisyRichTextRenderer/CaisyRichTextRenderer.astro";
+import SearchMeta from "@components/astro/global/SearchMeta.astro";
 
 interface Props {
     post: IGenBlogArticleMetaFragment;
@@ -30,11 +31,54 @@ const layoutProps = {
     modDatetime: post?._meta?.publishedAt!,
     ogImage: getOgImageUrl(locale, post, Astro.url),
 };
+
+const tagFilter = post.tags?.map((tag) => {
+    return {
+        name: m.blog__tags(),
+        value: "#" + tag?.name!,
+    };
+});
+
+const tags = post.tags
+    ?.map((tag) => {
+        return "#" + tag?.name!;
+    })
+    .join(" ");
+
+const searchProps = {
+    title: layoutProps.title,
+    description: layoutProps.description,
+    date: getBlogPostDateTime(locale, layoutProps.pubDateTime, layoutProps.modDatetime).date,
+    filter: [
+        {
+            name: m.blog__category(),
+            value: post.category!.name!,
+        },
+        ...tagFilter!,
+    ],
+    meta: [
+        {
+            name: m.blog__category(),
+            value: post.category!.name!,
+        },
+        {
+            name: m.blog__tags(),
+            value: tags!,
+        },
+    ],
+    sort: [
+        {
+            name: "date",
+            value: getBlogPostDateTime(locale, layoutProps.pubDateTime, layoutProps.modDatetime).date,
+        },
+    ],
+};
 ---
 
 <MainLayout {...layoutProps}>
     <HeadHrefLangs post={post} slot="hreflangs" />
     <Navigation post={post} slot="header" />
+    <SearchMeta {...searchProps} />
     <main>
         <div class="post-header">
             <BreadCrumbs>
@@ -44,7 +88,7 @@ const layoutProps = {
                 <BreadCrumbsItem currentPage={true} label={post?.title!} />
             </BreadCrumbs>
             <div class="post-description">
-                <div class="post-meta" data-pagefind-body>
+                <div class="post-meta">
                     <h1 class="gradient-text">{post?.title}</h1>
                     <div class="meta-details">
                         <p>By {post.author?.name}.</p>
@@ -52,7 +96,7 @@ const layoutProps = {
                         {
                             post.category && (
                                 <p>
-                                    <a href={getRelativeLocaleUrl(locale, `/blog/categories/${post.category?.name}`)}>{post.category?.name}</a>
+                                    <a href={getAbsoluteCategoryUrl(locale, post.category)}>{post.category?.name}</a>
                                 </p>
                             )
                         }
@@ -68,7 +112,7 @@ const layoutProps = {
             <hr />
         </div>
         <article class="prose max-w-none dark:prose-invert">
-            <CaisyRichTextRenderer richTextJson={post?.text?.json} connections={post?.text?.connections} generateToc/>
+            <CaisyRichTextRenderer richTextJson={post?.text?.json} connections={post?.text?.connections} generateToc />
         </article>
     </main>
     <Footer />

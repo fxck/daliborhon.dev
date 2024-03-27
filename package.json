@@ -5,8 +5,8 @@
     "scripts": {
         "dev": "astro dev",
         "dev-host": "astro dev --host",
-        "build": "paraglide-js compile --project ./project.inlang && astro build",
-        "build-and-preview": "astro build && wrangler pages dev ./dist --compatibility-flags='nodejs_compat' --live-reload --port 4321",
+        "build": "pnpm run compile:paraglide && astro build",
+        "build-and-preview": "astro build && pnpm run preview",
         "preview": "wrangler pages dev ./dist --compatibility-flags='nodejs_compat' --live-reload --port 4321",
         "astro": "astro",
         "sync": "astro sync",
@@ -14,8 +14,8 @@
         "prettier:format": "prettier . --write",
         "build:index": "pagefind --site dist",
         "generate:graphql": "graphql-codegen -r dotenv/config --config codegen.ts",
-        "generate:watch": "graphql-codegen --watch -r dotenv/config --config codegen.ts",
-        "generate:check": "graphql-codegen --check -r dotenv/config --config codegen.ts",
+        "generate:graphql-watch": "graphql-codegen --watch -r dotenv/config --config codegen.ts",
+        "generate:graphql-check": "graphql-codegen --check -r dotenv/config --config codegen.ts",
         "compile:paraglide": "paraglide-js compile --project ./project.inlang"
     },
     "dependencies": {

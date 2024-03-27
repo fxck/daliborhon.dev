@@ -21,7 +21,7 @@ const posts = await getAllBlogArticlesByCategoryAndLocale({ locale, categoryName
 
 {
     posts && posts.length !== 0 && (
-        <li class="category" data-pagefind-body>
+        <li class="category">
             <h2 class="title">
                 <a href={url}>{title}</a>
             </h2>

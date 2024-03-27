@@ -10,10 +10,11 @@ import PageLayout from "@layouts/PageLayout.astro";
 import { getAllBlogArticlesByTagAndLocale } from "@services/content/getAllBlogArticlesByTagAndLocale";
 import { getAllTags } from "@services/content/getAllTags";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import SearchMeta from "@components/astro/global/SearchMeta.astro";
 
 export async function getStaticPaths() {
     const paths = await Promise.all(
-        locales.flatMap(async (locale) => {
+        locales.map(async (locale) => {
             const tags = await getAllTags({});
 
             return await Promise.all(
@@ -36,7 +37,7 @@ export async function getStaticPaths() {
         })
     );
 
-    return paths[0];
+    return paths.flat();
 }
 
 const { posts, tag, locale } = Astro.props;
@@ -44,7 +45,7 @@ const { posts, tag, locale } = Astro.props;
 const tagTitle = tag.name!;
 const tagDescription = `${m.blog__posts_tagged()} #${tagTitle}`;
 const layoutProps = {
-    title: `${m.blog__tag()}: ${tagTitle}`,
+    title: `${m.blog__tag()}: #${tagTitle}`,
     description: tagDescription,
 };
 ---

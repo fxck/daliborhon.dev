@@ -30,7 +30,11 @@ const locale = Astro.currentLocale!;
                 </div>
                 <nav class="menu">
                     <ul class="menu-bar">
-                        <li><a class="nav-link" href={getRelativeLocaleUrl(locale, "/home")}>{m.common__home()}</a></li>
+                        <li>
+                            <a class="nav-link" href={getRelativeLocaleUrl(locale, "/home")} aria-label={m.common__home()}>
+                                {m.common__home()}
+                            </a>
+                        </li>
                         <li>
                             <button class="nav-link dropdown-btn" data-dropdown="blogDropdown" aria-haspopup="true" aria-expanded="false" aria-label={m.common__blog()}>
                                 {m.common__blog()}
@@ -41,13 +45,19 @@ const locale = Astro.currentLocale!;
                                         <span class="dropdown-link-title">{m.blog__browse_posts()}</span>
                                     </li>
                                     <li role="menuitem">
-                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog")}>{m.blog__posts()}</a>
+                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog")} aria-label={m.blog__posts()}>
+                                            {m.blog__posts()}
+                                        </a>
                                     </li>
                                     <li role="menuitem">
-                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog/posts/")}>{m.blog__all_posts_title()}</a>
+                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog/posts/")} aria-label={m.blog__all_posts_title()}>
+                                            {m.blog__all_posts_title()}
+                                        </a>
                                     </li>
                                     <li role="menuitem">
-                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog/posts/featured")}>{m.blog__featured_posts_title()}</a>
+                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog/posts/featured")} aria-label={m.blog__featured_posts_title()}>
+                                            {m.blog__featured_posts_title()}
+                                        </a>
                                     </li>
                                 </ul>
                                 <ul role="menu">
@@ -55,15 +65,23 @@ const locale = Astro.currentLocale!;
                                         <span class="dropdown-link-title">{m.blog__explore_posts()}</span>
                                     </li>
                                     <li role="menuitem">
-                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog/categories")}>{m.blog__categories()}</a>
+                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog/categories")} aria-label={m.blog__categories()}>
+                                            {m.blog__categories()}
+                                        </a>
                                     </li>
                                     <li role="menuitem">
-                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog/tags")}>{m.blog__tags()}</a>
+                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/blog/tags")} aria-label={m.blog__tags()}>
+                                            {m.blog__tags()}
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        <li><a class="nav-link" href={getRelativeLocaleUrl(locale, "/projects")}>{m.projects__projects()}</a></li>
+                        <li>
+                            <a class="nav-link" href={getRelativeLocaleUrl(locale, "/projects")} aria-label={m.projects__projects()}>
+                                {m.projects__projects()}
+                            </a>
+                        </li>
                         <li>
                             <button class="nav-link dropdown-btn" data-dropdown="aboutDropdown" aria-haspopup="true" aria-expanded="false" aria-label={m.common__about()}>
                                 {m.common__about()}
@@ -71,10 +89,12 @@ const locale = Astro.currentLocale!;
                             <div id="aboutDropdown" class="dropdown">
                                 <ul role="menu">
                                     <li role="menuitem">
-                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/resume")}>{m.common__resume()}</a>
+                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/resume")} aria-label={m.common__resume()}>
+                                            {m.common__resume()}
+                                        </a>
                                     </li>
                                     <li role="menuitem">
-                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/contact")}>
+                                        <a class="dropdown-link" href={getRelativeLocaleUrl(locale, "/contact")} aria-label={m.common__contact()}>
                                             {m.common__contact()}
                                         </a>
                                     </li>
