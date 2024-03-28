@@ -9,6 +9,8 @@ import profilePicture from "@assets/img/profile/me.png";
 import type { CollectionEntry } from "astro:content";
 import { getAbsoluteLocaleUrl } from "astro:i18n";
 import { createResumePdfFilename } from "@utils";
+import { Icon } from "astro-icon/components";
+import Loader from "@components/astro/global/Loader.astro";
 
 export { getStaticPaths } from "@i18n/utils";
 
@@ -30,7 +32,9 @@ const layoutProps = {
                 <div class="top-panel-meta-wrapper">
                     <div class="top-panel-meta">
                         <p>Dalibor Hon - Životopis</p>
-                        <a href={getAbsoluteLocaleUrl(locale, `/resume/${createResumePdfFilename(locale, true)}`)} download>Stáhnout CV</a>
+                        <a class="button is-anchor" href={getAbsoluteLocaleUrl(locale, `/resume/${createResumePdfFilename(locale, true)}`)} download>
+                            <Icon name="bi:filetype-pdf" /><span>Stáhnout CV</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -43,7 +47,9 @@ const layoutProps = {
                         <p>{resumeEntry.data.currentPosition.toUpperCase()}</p>
                         <h1 class="text-accent">Dalibor Hon</h1>
                     </div>
-                    <a class="button is-anchor" href={getAbsoluteLocaleUrl(locale, `/resume/${createResumePdfFilename(locale, true)}`)} download>Stáhnout CV</a>
+                    <a class="button is-anchor" href={getAbsoluteLocaleUrl(locale, `/resume/${createResumePdfFilename(locale, true)}`)} download>
+                        <Icon name="bi:filetype-pdf" /><span>Stáhnout CV</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -86,7 +92,7 @@ const layoutProps = {
         display: flex;
         gap: 3rem;
 
-        @media (max-width: 468px) {
+        @media (max-width: 768px) {
             flex-direction: column;
         }
     }
@@ -94,6 +100,7 @@ const layoutProps = {
     .hero-title-wrapper {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         row-gap: 1rem;
 
         p {
@@ -110,15 +117,15 @@ const layoutProps = {
             font-weight: 600;
             margin: 0;
             margin-left: -4px;
+            padding: 0;
         }
     }
 
     .profile-picture-wrapper {
         position: relative;
-        width: clamp(110px, 40vw, 190px);
-        height: clamp(110px, 40vw, 190px);
+        width: clamp(110px, 50vw, 190px);
+        height: clamp(110px, 50vw, 190px);
         border-radius: 50%;
-        margin-bottom: 2rem;
         margin-left: 0.2rem;
         box-shadow:
             0px 5px 30px 0px rgba(var(--accent), 0.8),
@@ -144,8 +151,16 @@ const layoutProps = {
     }
 
     .button {
-        width: max-content;
-        padding: 0.5rem;
+        > div {
+            display: none;
+        }
+
+        svg {
+            display: inline-block;
+            margin-right: 0.25rem;
+            width: 1.2rem;
+            height: 1.2rem;
+        }
     }
 
     @supports (animation-timeline: view()) {
@@ -163,7 +178,7 @@ const layoutProps = {
 
             100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(-5%);
             }
         }
 
@@ -173,18 +188,13 @@ const layoutProps = {
             }
         }
 
+        #content {
+            scroll-margin-top: calc(var(--header-height));
+        }
+
         .hero {
             view-timeline: --topPanelView;
             scroll-timeline: --scrollPanel;
-
-            .hero-meta {
-                animation-name: fade-out;
-                animation-fill-mode: both;
-                animation-timing-function: linear;
-                animation-timeline: --topPanelView;
-                animation-range-start: 80vh;
-                animation-range-end: 100vh;
-            }
         }
 
         .hero-top-panel {
@@ -194,14 +204,15 @@ const layoutProps = {
             position: fixed;
             left: 0;
             top: var(--header-height);
-            background: rgba(var(--secondary), 1);
+            background: var(--header-bg);
+            backdrop-filter: blur(8px);
             border-bottom: var(--border);
             animation-name: slide-down;
             animation-fill-mode: both;
             animation-timing-function: linear;
             animation-timeline: --topPanelView;
-            animation-range-start: 85vh;
-            animation-range-end: 100vh;
+            animation-range-start: 100vh;
+            animation-range-end: 120vh;
             z-index: 1000;
 
             .top-panel-meta-wrapper {
@@ -220,6 +231,20 @@ const layoutProps = {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                }
+            }
+
+            .button {
+                min-width: 0;
+
+                @media (max-width: 468px) {
+                    span {
+                        display: none;
+                    }
+
+                    svg {
+                        margin: 0;
+                    }
                 }
             }
         }

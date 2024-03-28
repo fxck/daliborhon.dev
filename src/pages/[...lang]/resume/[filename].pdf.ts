@@ -12,7 +12,6 @@ export async function getStaticPaths() {
         return { params: { lang: getRoutingLocale(locale), filename: filename} };
     });
 
-    console.log(paths);
     return paths;
 }
 
