@@ -32,9 +32,9 @@ export async function getStaticPaths() {
                         params: { lang: getRoutingLocale(locale), tag: tag?.name },
                         props: { posts: posts, tag: tag, locale: locale },
                     };
-                })
+                }),
             );
-        })
+        }),
     );
 
     return paths.flat();

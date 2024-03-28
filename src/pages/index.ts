@@ -1,7 +1,7 @@
 import type { APIRoute, AstroCookieSetOptions } from "astro";
 import { defaultLocale, locales } from "@i18n/config";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { siteConfig } from "@config"; 
+import { siteConfig } from "@config";
 
 export const prerender = false;
 

@@ -43,10 +43,6 @@ interface BuildResponse {
     };
 }
 
-const authKey = import.meta.env.CAISY_WEBHOOK_AUTH_KEY;
-const previewBuildHookUrl = import.meta.env.CLOUDFLARE_PREVIEW_BUILD_HOOK_URL;
-const prodBuildHookUrl = import.meta.env.CLOUDFLARE_PROD_BUILD_HOOK_URL;
-
 async function SerializeCloudflareResponse(cloudflareResponse: Response, res: BuildResponse, env: BUILD_ENVIRONMENT) {
     const contentType = cloudflareResponse.headers.get("content-type");
 
@@ -62,38 +58,48 @@ async function SerializeCloudflareResponse(cloudflareResponse: Response, res: Bu
 }
 /**
  * Endpoint to trigger a build with webhook from Caisy.
- * 
+ *
  * Accepted headers:
- * 
+ *
  * x-webhook-disable-build: Disables the build completely on this endpoint. Workaround for Caisy.
- * 
  * x-webhook-auth-key: Authentification key required to run the build. Set from environment variable CAISY_WEBHOOK_AUTH_KEY.
+ * x-webhook-build-env: What environment to build. Possible values are 'prod', 'preview', 'all'.
  * 
- * x-webhook-build-env: What environment to build. Possible values are 'prod', 'preview', 'all'. 
  * Webhook URL's must be set in env. variables CLOUDFLARE_PREVIEW_BUILD_HOOK_URL, CLOUDFLARE_PROD_BUILD_HOOK_URL or both.
- * 
+ *
  */
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
+    const { env } = locals.runtime;
+
+    const CAISY_WEBHOOK_AUTH_KEY = env.CAISY_WEBHOOK_AUTH_KEY;
+    const CLOUDFLARE_PREVIEW_BUILD_HOOK_URL = env.CLOUDFLARE_PREVIEW_BUILD_HOOK_URL;
+    const CLOUDFLARE_PROD_BUILD_HOOK_URL = env.CLOUDFLARE_PROD_BUILD_HOOK_URL;
+    const DISABLE_WEBHOOK_BUILD = env.DISABLE_WEBHOOK_BUILD;
+
+    if (DISABLE_WEBHOOK_BUILD && DISABLE_WEBHOOK_BUILD === "true") {
+        return new Response(null, { status: 405 });
+    }
+
     // Caisy has no option to disable webhook, so we disable the build on this endpoint
-    const disabled = request.headers.get("x-webhook-disable-build");
-    if (disabled && disabled === "true") {
+    const disabledByRequest = request.headers.get("x-webhook-disable-build");
+    if (disabledByRequest && disabledByRequest === "true") {
         const res = {
             status: "success",
-            message: "Webhook was received but the build is disabled with headers."
-        }
+            message: "Webhook was received but the build is disabled with headers.",
+        };
 
         console.log(res);
         return new Response(JSON.stringify(res), { status: 200 });
     }
 
-    if (!authKey) {
-        console.error("CAISY_WEBHOOK_AUTH_KEY was not set.")
+    if (!CAISY_WEBHOOK_AUTH_KEY) {
+        console.error("CAISY_WEBHOOK_AUTH_KEY was not set.");
         return new Response(null, { status: 500 });
     }
 
     const auth = request.headers.get("x-webhook-auth-key");
 
-    if (!auth || auth !== authKey) {
+    if (!auth || auth !== CAISY_WEBHOOK_AUTH_KEY) {
         const res = {
             error: "Not authorized",
         };
@@ -124,7 +130,7 @@ export const POST: APIRoute = async ({ request }) => {
     console.log("Triggering build for: " + buildEnvironment);
 
     if (buildEnvironment === BUILD_ENVIRONMENT.ALL) {
-        if (!previewBuildHookUrl || !prodBuildHookUrl) {
+        if (!CLOUDFLARE_PREVIEW_BUILD_HOOK_URL || !CLOUDFLARE_PROD_BUILD_HOOK_URL) {
             buildResponse.status = "error";
             buildResponse.message = "Could not trigger build, the Cloudflare webhook URL was not provided in evironment variables.";
 
@@ -132,14 +138,14 @@ export const POST: APIRoute = async ({ request }) => {
             return new Response(JSON.stringify(buildResponse), { status: 500 });
         }
 
-        const previewBuild = await fetch(previewBuildHookUrl, { method: "POST" });
+        const previewBuild = await fetch(CLOUDFLARE_PREVIEW_BUILD_HOOK_URL, { method: "POST" });
 
         if (!previewBuild.ok) {
             buildResponse.status = "error";
             buildResponse.buildStatusMessage.preview = `Could not trigger preview build: ${previewBuild.status}, ${previewBuild.statusText}.`;
         }
 
-        const prodBuild = await fetch(prodBuildHookUrl, { method: "POST" });
+        const prodBuild = await fetch(CLOUDFLARE_PROD_BUILD_HOOK_URL, { method: "POST" });
 
         if (!prodBuild.ok) {
             buildResponse.status = "error";
@@ -159,14 +165,14 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     if (buildEnvironment === BUILD_ENVIRONMENT.PREVIEW) {
-        if (!previewBuildHookUrl) {
+        if (!CLOUDFLARE_PREVIEW_BUILD_HOOK_URL) {
             buildResponse.status = "error";
             buildResponse.message = "Could not trigger build, the Cloudflare webhook PREVIEW URL was not provided in evironment variables.";
 
             return new Response(JSON.stringify(buildResponse), { status: 500 });
         }
 
-        const previewBuild = await fetch(previewBuildHookUrl, { method: "POST" });
+        const previewBuild = await fetch(CLOUDFLARE_PREVIEW_BUILD_HOOK_URL, { method: "POST" });
 
         if (!previewBuild.ok) {
             buildResponse.status = "error";
@@ -185,12 +191,12 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     if (buildEnvironment === BUILD_ENVIRONMENT.PROD) {
-        if (!prodBuildHookUrl) {
+        if (!CLOUDFLARE_PROD_BUILD_HOOK_URL) {
             buildResponse.status = "error";
             buildResponse.message = "Could not trigger build, the Cloudflare webhook PROD URL was not provided in evironment variables.";
         }
 
-        const prodBuild = await fetch(prodBuildHookUrl, { method: "POST" });
+        const prodBuild = await fetch(CLOUDFLARE_PROD_BUILD_HOOK_URL, { method: "POST" });
 
         if (!prodBuild.ok) {
             buildResponse.status = "error";

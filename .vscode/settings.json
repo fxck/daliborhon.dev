@@ -1,10 +1,4 @@
 {
-    "css.customData": [
-        ".vscode/tailwind.json"
-    ],
-    "i18n-ally.localesPaths": [
-        "messages",
-        "src/i18n",
-        "src/paraglide/messages"
-    ]
+    "css.customData": [".vscode/tailwind.json"],
+    "i18n-ally.localesPaths": ["messages", "src/i18n", "src/paraglide/messages"]
 }

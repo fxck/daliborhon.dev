@@ -33,9 +33,9 @@ export async function getStaticPaths() {
                         params: { lang: getRoutingLocale(locale), category: slugifyStr(locale, cat?.name!) },
                         props: { posts: posts, category: cat, locale: locale },
                     };
-                })
+                }),
             );
-        })
+        }),
     );
 
     return paths.flat();

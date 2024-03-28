@@ -14,5 +14,9 @@ export const getFeaturedBlogArticlesByLocale = async ({ locale, first, arr = [] 
         edge?.node && arr.push(edge.node);
     });
 
-    return arr as IGenBlogArticleMetaFragment[];
+    const docs = arr as IGenBlogArticleMetaFragment[];
+
+    return docs.sort((a, b) => {
+        return new Date(a._meta?.firstPublishedAt!).valueOf() - new Date(b._meta?.firstPublishedAt!).valueOf();
+    });
 };

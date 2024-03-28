@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const q_allBlogArticleByLocale = gql`
     query allBlogArticleByLocale($locale: String!, $after: String) {
-        allBlogArticle(locale: $locale, after: $after, sort: { updatedAt: DESC, publishedAt: DESC }) {
+        allBlogArticle(locale: $locale, after: $after, sort: { publishedAt: DESC }) {
             edges {
                 cursor
                 node {

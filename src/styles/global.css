@@ -119,7 +119,7 @@ small {
         cursor: pointer;
         border: var(--border);
     }
-    
+
     &.is-anchor {
         color: var(--button-color);
 

@@ -9,7 +9,7 @@ import { createResumePdfFilename } from "@utils";
 export async function getStaticPaths() {
     const paths = locales.map((locale) => {
         const filename = createResumePdfFilename(locale);
-        return { params: { lang: getRoutingLocale(locale), filename: filename} };
+        return { params: { lang: getRoutingLocale(locale), filename: filename } };
     });
 
     return paths;

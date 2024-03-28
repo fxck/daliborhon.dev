@@ -27,13 +27,12 @@ export default defineConfig({
     output: "hybrid",
     adapter: cloudflare({
         imageService: "compile",
-        runtime: {
-            type: "pages",
-            mode: "local",
+        platformProxy: {
+            enabled: true,
         },
     }),
     image: {
-        domains: ["assets.caisy.io"],
+        domains: ["assets.caisy.io", "astro.badg.es"],
         remotePatterns: [
             {
                 protocol: "https",
@@ -77,11 +76,14 @@ export default defineConfig({
         paraglide({
             project: "./project.inlang",
             outdir: "./src/paraglide",
-        })
+        }),
     ],
     vite: {
         server: {
             port: PORT,
+        },
+        ssr: {
+            external: ["md-to-pdf", "@resvg/resvg-js", "node:buffer", "node:process"],
         },
         optimizeDeps: {
             exclude: ["@resvg/resvg-js"],

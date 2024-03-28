@@ -70,7 +70,7 @@ const img = await fetchImage(image!.src!);
             {img?.svg && <Fragment set:html={img?.data} />}
             {!img?.svg && <img src={img?.data} alt={title} />}
         </i>
-        <div class="card-info-wrapper" >
+        <div class="card-info-wrapper">
             <div class="card-info-title">
                 <div class="title-meta">
                     <a href={projectSourceUrl} target="_blank" title={title} aria-label={title}>{title}</a>
