@@ -1,6 +1,4 @@
----
-import MainLayout from "@layouts/MainLayout.astro";
-
+import type { APIContext } from "astro";
 
 export async function getStaticPaths() {
     const slugs = ["01", "02", "03", "04", "05", "06", "07"];
@@ -16,17 +14,18 @@ export async function getStaticPaths() {
     }
 
     const paths = locales.flatMap((locale) => {
-        return slugs.map((slug) => {
-            return { params: { lang: getRoutingLocale(locale), slug: slug }, props: { lang: locale, slug: slug } };
-        });
+
+        return slugs.map((slug)=> {
+            return { params: { lang: getRoutingLocale(locale), slug: slug }, props: { lang: locale } };
+        })
+        
     });
 
     return paths;
 }
 
-const { lang, slug } = Astro.params;
----
-
-<MainLayout>
-    Lang: {lang}, slug: {slug}
-</MainLayout>
+export async function GET({ params, props }: APIContext) {
+    return new Response("this is a text", {
+        headers: { "Content-Type": "text/plan" },
+    });
+}

@@ -11,17 +11,10 @@
         "allowJs": true,
         "baseUrl": "./",
         "paths": {
-            "@components/*": ["src/components/*"],
-            "@assets/*": ["src/assets/*"],
             "@i18n/*": ["src/i18n/*"],
             "@public/*": ["src/public/*"],
             "@layouts/*": ["src/layouts/*"],
-            "@utils": ["src/utils/index.ts"],
-            "@utils/*": ["src/utils/*"],
-            "@services/*": ["src/services/*"],
             "@config": ["site.config.ts"],
-            "$messages": ["src/paraglide/messages.js"],
-            "$paraglide-runtime": ["src/paraglide/runtime.js"]
         }
     }
 }

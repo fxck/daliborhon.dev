@@ -1,64 +1,11 @@
 ---
-import Contact from "@components/astro/global/Contact.astro";
-import Section from "@components/astro/global/Section.astro";
-import * as m from "$messages";
-import PageLayout from "@layouts/PageLayout.astro";
-import SocialLinks from "@components/astro/home/SocialLinks.astro";
-import { defaultLocale, locales } from "@i18n/config";
-
-//export { getStaticPaths } from "@i18n/utils";
+import MainLayout from "@layouts/MainLayout.astro";
 
 export const prerender = false;
 
 const { lang } = Astro.params;
-const locale = lang === undefined ? defaultLocale : lang;
-const isAllowedLocale = locales.find((l) => {
-    return l === locale;
-});
-
-if (!isAllowedLocale) {
-    return new Response(null, { status: 404 });
-}
-
-const layoutProps = {
-    title: m.contact__leave_message_title(),
-};
 ---
 
-<PageLayout {...layoutProps}>
-    <Section isFirstSection sectionTitle={m.common__contact()} id="contact">
-        <Section sectionTitle={m.common__social_links_title()} sectionDescription={m.contact__contact_me_social()} id="contactSocial">
-            <div class="socials-container">
-                <SocialLinks />
-            </div>
-        </Section>
-        <Section sectionTitle={m.contact__leave_message_title()} sectionDescription={m.contact__contact_me_form()} id="contact">
-            <Contact />
-        </Section>
-    </Section>
-</PageLayout>
-
-<style>
-    .socials-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .social-list {
-        font-size: 1.2rem;
-        line-height: 1.2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        a {
-            display: inline-flex;
-            gap: 0.5rem;
-
-            i {
-                color: var(--body-color);
-            }
-        }
-    }
-</style>
+<MainLayout>
+    Contact: {lang === undefined ? "undefined" : lang}
+</MainLayout>

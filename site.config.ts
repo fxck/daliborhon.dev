@@ -1,14 +1,4 @@
 export const siteConfig = {
-    blog: {
-        pageSize: 6,
-        recentPostsSize: 6,
-        featuredPostsSize: 6,
-        previewPostsSize: 6,
-        codeBlockTheme: "material-theme-palenight",
-    },
-    projects: {
-        recentProjectsSize: 3,
-    },
     i18n: {
         locales: {
             cs: {
@@ -21,9 +11,5 @@ export const siteConfig = {
             },
         },
         defaultLocale: "cs",
-        localeCookie: {
-            name: "redirected-locale",
-            expDays: 60,
-        },
     },
 };
