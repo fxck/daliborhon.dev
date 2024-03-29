@@ -26,7 +26,7 @@ export default defineConfig({
     },
     output: "hybrid",
     adapter: cloudflare({
-        imageService: "compile",
+        imageService: "passthrough", // "compile" is currently broken - https://github.com/withastro/adapters/issues/213
         platformProxy: {
             enabled: true,
         },
@@ -83,7 +83,7 @@ export default defineConfig({
             port: PORT,
         },
         ssr: {
-            external: ["md-to-pdf", "@resvg/resvg-js", "node:buffer", "node:process"],
+            external: ["md-to-pdf", "@resvg/resvg-js", "node:buffer", "node:process", "node:fs"],
         },
         optimizeDeps: {
             exclude: ["@resvg/resvg-js"],
