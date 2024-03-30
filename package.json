@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "@apollo/client": "^3.9.9",
-        "@astrojs/cloudflare": "^10.0.0",
+        "@astrojs/cloudflare": "0.0.0-cf-10-routes-fix-20240330133117",
         "@astrojs/react": "^3.1.0",
         "@astrojs/tailwind": "^5.1.0",
         "@caisy/rich-text-astro-renderer": "^1.0.2",

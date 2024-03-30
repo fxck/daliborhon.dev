@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "include": [
+    "/",
+    "/_image",
+    "/api/build",
+    "/contact",
+    "/*/contact"
+  ],
+  "exclude": []
+}

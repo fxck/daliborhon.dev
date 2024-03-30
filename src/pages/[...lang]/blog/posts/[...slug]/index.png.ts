@@ -2,7 +2,8 @@ import { defaultLocale, locales } from "@i18n/config";
 import { getRoutingLocale } from "@i18n/utils";
 import { getAllBlogArticlesByLocale } from "@services/content/getAllBlogArticlesByLocale";
 import type { IGenBlogArticleMetaFragment } from "@services/graphql/__generated/sdk";
-import { generateOgImageForPost, getBlogPostSlug } from "@utils";
+import { getBlogPostSlug } from "@utils";
+import { generateOgImageForPost } from "@utils/og";
 import type { APIContext } from "astro";
 
 export async function getStaticPaths() {

@@ -1,7 +1,7 @@
 import { Resvg } from "@resvg/resvg-js";
 import satori, { type SatoriOptions } from "satori";
-import postOgImage from "./og-templates/post";
-import siteOgImage from "./og-templates/site";
+import postOgImage from "./templates/post";
+import siteOgImage from "./templates/site";
 import type { IGenBlogArticleMetaFragment } from "@services/graphql/__generated/sdk";
 
 const fetchFonts = async () => {
