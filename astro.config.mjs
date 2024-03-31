@@ -1,5 +1,5 @@
 import cloudflare from "@astrojs/cloudflare";
-import react from "@astrojs/react";
+//import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import paraglide from "@inlang/paraglide-js-adapter-astro";
@@ -50,7 +50,7 @@ export default defineConfig({
         },
     },
     integrations: [
-        react(),
+        //react(),
         sitemap({
             i18n: {
                 defaultLocale: defaultLocale,

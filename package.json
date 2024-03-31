@@ -6,8 +6,8 @@
         "init": "pnpm run wrangler:types && pnpm run build",
         "dev": "astro dev",
         "dev-host": "astro dev --host",
-        "build": "pnpm run compile:paraglide && astro build",
-        "build-and-preview": "astro build && pnpm run preview",
+        "build": "pnpm run compile:paraglide && pnpm run build-cf",
+        "build-and-preview": "astro build && pnpm run bundle:worker && pnpm run preview",
         "preview": "wrangler pages dev ./dist --compatibility-flags='nodejs_compat' --live-reload --port 4321",
         "astro": "astro",
         "sync": "astro sync",
@@ -18,7 +18,10 @@
         "generate:graphql-watch": "graphql-codegen --watch -r dotenv/config --config codegen.ts",
         "generate:graphql-check": "graphql-codegen --check -r dotenv/config --config codegen.ts",
         "compile:paraglide": "paraglide-js compile --project ./project.inlang",
-        "wrangler:types": "npx wrangler types ./src/worker-configuration.d.ts"
+        "wrangler:types": "npx wrangler types ./src/worker-configuration.d.ts",
+        "bundle:worker": "npx wrangler deploy ./dist/_worker.js --dry-run --outdir ./dist/build --compatibility-date 2024-03-31 --minify && pnpm run bundle:worker-cleanup",
+        "bundle:worker-cleanup": "rm -rf ./dist/_worker.js && mv ./dist/build/_worker.js ./dist && rm -rf ./dist/build",
+        "build-cf": "pnpm run build && pnpm run bundle:worker"
     },
     "dependencies": {
         "@apollo/client": "^3.9.9",

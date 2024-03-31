@@ -3,21 +3,13 @@ import Section from "@components/astro/global/Section.astro";
 import * as m from "$messages";
 import PageLayout from "@layouts/PageLayout.astro";
 import SocialLinks from "@components/astro/home/SocialLinks.astro";
-import { defaultLocale, locales, type AllowedLocales } from "@i18n/config";
-import Loader from "@components/astro/global/Loader.astro";
-import ContactForm from "@components/react/ContactForm/ContactForm";
+import { type AllowedLocales } from "@i18n/config";
+//import Loader from "@components/astro/global/Loader.astro";
+//import ContactForm from "@components/react/ContactForm/ContactForm";
 
-export const prerender = false;
+export { getStaticPaths } from "@i18n/utils";
 
-const { lang } = Astro.params;
-const locale = (lang ?? defaultLocale) as AllowedLocales;
-const isAllowedLocale = locales.find((loc) => {
-    return loc === locale;
-});
-
-if (!isAllowedLocale) {
-    return new Response(null, { status: 404 });
-}
+//const locale = Astro.currentLocale as AllowedLocales;
 
 const layoutProps = {
     title: m.contact__leave_message_title(),
@@ -32,9 +24,10 @@ const layoutProps = {
             </div>
         </Section>
         <Section sectionTitle={m.contact__leave_message_title()} sectionDescription={m.contact__contact_me_form()} id="contact">
-            <ContactForm locale={locale} client:load>
+            <!-- <ContactForm locale={locale} client:load>
                 <Loader slot="loader" standalone />
             </ContactForm>
+        -->
         </Section>
     </Section>
 </PageLayout>
