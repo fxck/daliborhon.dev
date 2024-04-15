@@ -37,6 +37,8 @@ export default defineConfig({
         webAnalytics: {
             enabled: true,
         },
+        imageService: true,
+        devImageService: "sharp",
         maxDuration: 10,
     }),
     image: {
