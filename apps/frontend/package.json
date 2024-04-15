@@ -13,17 +13,16 @@
         "sync": "astro sync",
         "build:index": "pagefind --site dist",
         "compile:paraglide": "paraglide-js compile --project ./project.inlang",
-        "wrangler:types": "wrangler types ./src/worker-configuration.d.ts",
         "deps:check-update": "pnpm ncu -x @astrojs/cloudflare",
         "deps:update": "pnpm ncu -u -x @astrojs/cloudflare && pnpm install",
         "dev:tunnel": "pnpm lt --port 4321 --subdomain daliborhondev"
     },
     "dependencies": {
         "@astro-community/astro-embed-youtube": "^0.5.2",
-        "@astrojs/cloudflare": "9.2.0",
         "@astrojs/react": "^3.3.0",
         "@astrojs/rss": "^4.0.5",
         "@astrojs/tailwind": "^5.1.0",
+        "@astrojs/vercel": "^7.5.3",
         "@formkit/auto-animate": "^0.8.2",
         "@hcaptcha/react-hcaptcha": "^1.10.1",
         "@iconify-json/bi": "^1.1.23",
@@ -82,7 +81,6 @@
         "satori": "^0.10.13",
         "sharp": "^0.33.3",
         "slug": "^9.0.0",
-        "vite": "^5.2.8",
-        "wrangler": "^3.50.0"
+        "vite": "^5.2.8"
     }
 }

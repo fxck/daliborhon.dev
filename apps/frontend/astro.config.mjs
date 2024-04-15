@@ -11,23 +11,20 @@ import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 import expressiveCode from "astro-expressive-code";
+import vercelServerless from "@astrojs/vercel/serverless";
 
 const { CF_PAGES_BRANCH } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 const PORT = 4321;
 const DEV_ENV = import.meta.env.DEV;
 const PREVIEW_BUILD = CF_PAGES_BRANCH && CF_PAGES_BRANCH.startsWith("dev");
-
 let SITE_URL = DEV_ENV ? `http://localhost:${PORT}` : "https://www.daliborhon.dev/";
 let SANITY_PERSPECTIVE = DEV_ENV ? "previewDrafts" : "published";
-
 console.log(`>> Dont forget to change the datasets!`);
 let SANITY_DATASET = DEV_ENV ? defaultWorkspace.getDevDataset() : defaultWorkspace.getDevDataset();
-
 if (PREVIEW_BUILD) {
     SITE_URL = `https://${CF_PAGES_BRANCH}.daliborhon-dev.pages.dev`;
     SANITY_PERSPECTIVE = "previewDrafts";
 }
-
 console.log(`>> Using PREVIEW_BUILD: '${PREVIEW_BUILD}'`);
 console.log(`>> Using SITE_URL: '${SITE_URL}'`);
 console.log(`>> Using SANITY_PERSPECTIVE: '${SANITY_PERSPECTIVE}'`);
@@ -37,12 +34,11 @@ console.log(`>> Using SANITY_DATASET: '${SANITY_DATASET}'`);
 export default defineConfig({
     site: SITE_URL,
     output: "server",
-    adapter: cloudflare({
-        imageService: "compile",
-        runtime: {
-            type: "pages",
-            mode: "local",
+    adapter: vercelServerless({
+        webAnalytics: {
+            enabled: true,
         },
+        maxDuration: 10,
     }),
     image: {
         domains: ["cdn.sanity.io", "astro.badg.es"],
