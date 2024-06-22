@@ -1,0 +1,21 @@
+{
+  "name": "@daliborhon.dev/cms",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/svelte": "^5.5.0",
+    "@sveltia/cms": "^0.34.1",
+    "astro": "^4.10.0",
+    "svelte": "^4.2.18",
+    "typescript": "^5.4.5",
+    "@daliborhon.dev/shared" :"workspace:*"
+  }
+}
