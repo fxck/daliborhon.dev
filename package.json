@@ -9,7 +9,7 @@
         "build": "dotenv -- turbo build",
         "build:studio": "pnpm --filter @daliborhon.dev/studio build",
         "build:frontend": "pnpm --filter @daliborhon.dev/frontend build",
-        "start:frontend": "pnpm --filter @daliborhon.dev/frontend start",
+        "start:frontend": "node apps/frontend/dist/server/entry.mjs",
         "format": "pnpm run format:code && pnpm run format:imports",
         "format:code": "prettier -w \"**/*\" --ignore-unknown --cache",
         "format:imports": "biome check --apply ."

@@ -3,7 +3,12 @@ const headers = {
 };
 
 export async function fetchGithubData(url: string) {
+	console.log("Token: " + import.meta.env.GH_AUTH_TOKEN);
+
 	return fetch(url, { headers })
-		.then((res) => res.json())
+		.then((res) => {
+			console.log("Response: " + res.json());
+			return res.json();
+		})
 		.catch((err) => console.log(err));
 }
