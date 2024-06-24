@@ -15,12 +15,14 @@
         "build:index": "pagefind --site dist",
         "build-and-preview": "astro build && pnpm run preview",
         "preview": "wrangler pages dev ./dist --compatibility-flags='nodejs_compat' --live-reload --port 4321",
+        "start": "node dist/server/entry.mjs",
         "compile:paraglide": "paraglide-js compile --project ./project.inlang",
         "wrangler:types": "wrangler types ./src/worker-configuration.d.ts"
     },
     "dependencies": {
         "@astro-community/astro-embed-youtube": "^0.5.2",
         "@astrojs/cloudflare": "9.2.0",
+        "@astrojs/node": "^8.3.1",
         "@astrojs/react": "^3.4.0",
         "@astrojs/rss": "^4.0.6",
         "@astrojs/tailwind": "^5.1.0",

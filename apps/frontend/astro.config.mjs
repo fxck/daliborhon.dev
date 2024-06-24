@@ -12,7 +12,7 @@ import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 import iconConfig from "./icons.config";
-
+import node from "@astrojs/node";
 const { CF_PAGES_BRANCH, NODE_ENV, USE_SANITY_DATASET } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
 // Default config
@@ -22,7 +22,6 @@ const PREVIEW_BUILD = CF_PAGES_BRANCH && CF_PAGES_BRANCH.startsWith("dev");
 let SITE_URL = DEV_ENV ? `http://localhost:${PORT}` : "https://www.daliborhon.dev/";
 let SANITY_PERSPECTIVE = DEV_ENV ? "previewDrafts" : "published";
 let SANITY_DATASET = DEV_ENV ? defaultWorkspace.getDevDataset() : defaultWorkspace.getProdDataset();
-
 if (USE_SANITY_DATASET) {
 	SANITY_DATASET = USE_SANITY_DATASET;
 }
@@ -33,7 +32,6 @@ if (PREVIEW_BUILD) {
 	SITE_URL = `https://${CF_PAGES_BRANCH}.daliborhon-dev.pages.dev`;
 	SANITY_PERSPECTIVE = "previewDrafts";
 }
-
 console.log(`>> Using environment: '${NODE_ENV}'`);
 console.log(`>> Using PREVIEW_BUILD: '${PREVIEW_BUILD ?? false}'`);
 console.log(`>> Using SITE_URL: '${SITE_URL}'`);
@@ -50,12 +48,8 @@ export default defineConfig({
 		// https://developers.cloudflare.com/pages/configuration/serving-pages/#not-found-behavior
 		format: "file",
 	},
-	adapter: cloudflare({
-		imageService: "compile",
-		runtime: {
-			type: "pages",
-			mode: "local",
-		},
+	adapter: node({
+		mode: "standalone",
 	}),
 	image: {
 		domains: ["cdn.sanity.io"],
@@ -90,7 +84,9 @@ export default defineConfig({
 			},
 		}),
 		pagefind(),
-		icon({ ...iconConfig }),
+		icon({
+			...iconConfig,
+		}),
 		tailwind(),
 		paraglide({
 			project: "./project.inlang",
