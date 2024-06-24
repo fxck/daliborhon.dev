@@ -6,6 +6,9 @@ zerops:
       # container be based on (can be an array)
       base: nodejs@22
 
+      prepareCommands:
+        - apt-get libc++1
+
       # what commands to use to build your app
       buildCommands:
         - pnpm --filter @daliborhon.dev/frontend install
