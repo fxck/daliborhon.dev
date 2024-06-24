@@ -1,48 +1,48 @@
 zerops:
-  - setup: daliborhondotdev
-    # ==== how to build your application ====
-    build:
-      os: ubuntu
-      # what technologies should the build
-      # container be based on (can be an array)
-      base: nodejs@22
+    - setup: daliborhondotdev
+      # ==== how to build your application ====
+      build:
+          os: ubuntu
+          # what technologies should the build
+          # container be based on (can be an array)
+          base: nodejs@22
 
-      # prepareCommands:
-      #  - apt-get install libc++-dev libc++abi-dev
+          prepareCommands:
+              - apt-get install ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
 
-      # what commands to use to build your app
-      buildCommands:
-        - pnpm --filter @daliborhon.dev/frontend install
-        - pnpm run build:frontend
+          # what commands to use to build your app
+          buildCommands:
+              - pnpm --filter @daliborhon.dev/frontend install
+              - pnpm run build:frontend
 
-      # select which files / folders to deploy
-      # after the build succesfully finished
-      deployFiles:
-        - apps/frontend/dist
-        - apps/frontend/package.json
-        - apps/frontend/node_modules
+          # select which files / folders to deploy
+          # after the build succesfully finished
+          deployFiles:
+              - apps/frontend/dist
+              - apps/frontend/package.json
+              - apps/frontend/node_modules
 
-      # *optional*: which files / folders
-      # to cache for the next build run
-      # cache:
-      #   - node_modules
-      #   - package-lock.json
+          # *optional*: which files / folders
+          # to cache for the next build run
+          # cache:
+          #   - node_modules
+          #   - package-lock.json
 
-    # ==== how to run your application ====
-    run:
-      os: ubuntu
-      # what technologies should the runtime
-      # container be based on (can be array)
-      base: nodejs@22
+      # ==== how to run your application ====
+      run:
+          os: ubuntu
+          # what technologies should the runtime
+          # container be based on (can be array)
+          base: nodejs@22
 
-      # what ports your app listens on
-      # and whether it supports http traffic
-      ports:
-        - port: 3000
-          httpSupport: true
-      envVariables:
-        PORT: 3000
-        HOST: 0.0.0.0
+          # what ports your app listens on
+          # and whether it supports http traffic
+          ports:
+              - port: 3000
+                httpSupport: true
+          envVariables:
+              PORT: 3000
+              HOST: 0.0.0.0
 
-      # how to start your application
-      start: pnpm start:frontend
+          # how to start your application
+          start: pnpm start:frontend
