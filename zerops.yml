@@ -7,8 +7,8 @@ zerops:
       # container be based on (can be an array)
       base: nodejs@22
 
-      prepareCommands:
-        - apt-get install libc++-dev libc++abi-dev
+      # prepareCommands:
+      #  - apt-get install libc++-dev libc++abi-dev
 
       # what commands to use to build your app
       buildCommands:
