@@ -8,7 +8,7 @@ zerops:
       base: nodejs@22
 
       prepareCommands:
-        - apt-get install libc++1
+        - apt-get install libc++-dev libc++abi-dev
 
       # what commands to use to build your app
       buildCommands:
