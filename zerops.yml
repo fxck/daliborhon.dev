@@ -2,12 +2,13 @@ zerops:
   - setup: daliborhondotdev
     # ==== how to build your application ====
     build:
+      os: ubuntu
       # what technologies should the build
       # container be based on (can be an array)
       base: nodejs@22
 
       prepareCommands:
-        - apk add libc++1
+        - apt-get libc++1
 
       # what commands to use to build your app
       buildCommands:
@@ -29,6 +30,7 @@ zerops:
 
     # ==== how to run your application ====
     run:
+      os: ubuntu
       # what technologies should the runtime
       # container be based on (can be array)
       base: nodejs@22
